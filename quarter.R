@@ -9,7 +9,7 @@ library(lubridate)
 
 classes <- c("character","numeric","numeric","numeric","numeric","integer","numeric")
 names(classes) <- c("Trade_dt","Open","High","Low","Close","Volume","Adj Close")
-df <- read.csv(file = "J:/R/Test/Data/Stock_files_/stock_SWELECT.csv",colClasses = classes)
+df <- read.csv(file = "J:/R/Test/test/Data/Stock_files_/stock_SWELECT.csv",colClasses = classes)
 df$Date <- as.Date(df$Date,format="%m/%d/%Y")
 
 #curr_dt <- Sys.Date()
@@ -29,18 +29,9 @@ for(i in 1:length(q_mid))
 	}
 }
 
-first_q_start_dt <- temp_dt - 2.5 months
-first_q_start_dt <- temp_dt - 3 months + 1
+frst_q_strt_dt <- round_date(temp_dt,"quarter")
+q_start <- c(frst_q_strt_dt,frst_q_strt_dt -months(3),frst_q_strt_dt -months(6),frst_q_strt_dt -months(9))
 
 
-
-q_start <- c("-01-01","-04-01","-07-01","-10-01")
-q_start <- paste(y,q_start,sep="")
-q_start <- as.Date(q_start,format = "%Y-%m-%d")
-
-q_end <- c("-02-15","-05-15","-08-15","-11-15")
-q_end <- paste(y,q_end,sep="")
-q_end <- as.Date(q_end,format = "%Y-%m-%d")
-
-a <- rollback(a, roll_to_first = TRUE)
-b <- round_date(b,"quarter")
+q_end <- q_start + months(3) - days(1)
+q_end[1] <- df_dt
