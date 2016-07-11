@@ -1,0 +1,13 @@
+hive
+show databases;
+use aml;
+show tables in aml;
+select * from aml_alerts;
+
+
+
+R
+
+
+hadoop fs -ls /user/aml_project/
+hadoop fs -put /D:/sam/abc.txt /user/aml_project/abc.txt
